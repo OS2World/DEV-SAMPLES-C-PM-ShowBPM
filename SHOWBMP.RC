@@ -1,0 +1,86 @@
+/********************************************************************
+**                   SHOWBMP Resource Script File                  **
+********************************************************************/
+#include <os2.h>
+#include <SHOWBMP.h>
+
+ICON   ID_MAINWIN  SHOWBMP.ICO
+
+MENU ID_MAINWIN  PRELOAD
+  {
+    SUBMENU "~File",               IDM_FILE
+      {
+        MENUITEM "~New",               IDM_FILE_NEW
+        MENUITEM "~Open",              IDM_FILE_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "~Save",              IDM_FILE_SAVE
+        MENUITEM "Save ~As...",        IDM_FILE_SAVEAS
+        MENUITEM SEPARATOR
+        MENUITEM "~Information...",    IDM_FILE_INFO
+        MENUITEM SEPARATOR
+        MENUITEM "A~bout",             IDM_FILE_ABOUT
+        MENUITEM SEPARATOR
+        MENUITEM "E~xit\tF3",          IDM_FILE_EXIT
+      }
+    MENUITEM "~Help", IDM_HELP, MIS_HELP
+  }
+
+ACCELTABLE ID_MAINWIN
+  {
+    VK_F3,     IDM_FILE_EXIT,          VIRTUALKEY
+  }
+
+STRINGTABLE
+  {
+    IDS_ERROR01,    "WinCreateMsgQueue Failed"
+    IDS_ERROR02,    "Client WinRegisterClass Failed"
+    IDS_ERROR03,    "Client WinCreateStdWindow Failed"
+    IDS_ERROR04,    "Bitmap Create Failed"
+    IDS_ERROR05,    "Subthread startup Failed"
+    IDS_ERROR06,    "File requester routine Failed"
+
+    IDS_TITLE,      "Display Bitmap"
+    IDS_ERROR,      "  ERROR"
+    IDS_DEBUG,      "  DEBUG"
+    IDS_VIEWINFO,   "  View Information"
+    IDS_UNTITLED,   "(untitled)"
+    IDS_WORKING,    "Working..."
+
+    IDS_FORMAT01,   "%s %cSEV=0x%2.2X ERR=0x%4.4X %cRC=%d"
+    IDS_FORMAT02,   "%s, RC=%d (%4.4X)"
+    IDS_FORMAT03,   "%s %d (%4.4X)"
+    IDS_FORMAT04,   "Width=%u Height=%u Colors=%u"
+  }
+
+DLGTEMPLATE IDD_ABOUT
+  {
+    DIALOG "", 0, 103, 32, 200, 88,, FCF_DLGBORDER
+      {
+        CTEXT "SHOWBMP Level 00"                    -1,  10, 64, 180,  8
+        CTEXT "Display bitmap in a PM window"       -1,  10, 40, 180,  8
+        CTEXT "Copyright 1990 George S. Brickner"   -1,  10, 32, 180,  8
+        DEFPUSHBUTTON "OK"             DID_OK,  80,  8,  40, 16, WS_GROUP
+      }
+  }
+
+DLGTEMPLATE IDD_OPEN
+  {
+  DIALOG "", 0, 95, 4, 240, 170,, FCF_DLGBORDER
+    {
+    CTEXT "Open Bitmap File"       -1,             8, 154, 224,  8
+    LTEXT "Use mouse to choose file, or type filename." -1, 8, 138, 224, 8
+    LTEXT "Current Directory:"     -1,             8, 126,  80,  8
+    LTEXT ""                       IDD_PATH,      88, 126, 144,  8
+    LTEXT "Filename:"              -1,             8, 110,  48,  8
+    ENTRYFIELD ""                  IDD_FILEEDIT,  56, 110, 176,  8, ES_MARGIN
+    CTEXT "Drives"                 -1,            10,  96,  40,  8
+    CTEXT "Directories"            -1,            60,  96,  80,  8
+    CTEXT "Files"                  -1,           150,  96,  80,  8
+    LISTBOX                        IDD_DEVLIST,   10,  32,  40, 64
+    LISTBOX                        IDD_DIRLIST,   60,  32,  80, 64
+    LISTBOX                        IDD_FILELIST, 150,  32,  80, 64
+    DEFPUSHBUTTON "Open"           DID_OK,        32,   8,  64, 16, WS_GROUP
+    PUSHBUTTON "Esc=Cancel"        DID_CANCEL,   144,   8,  64, 16, WS_GROUP
+    }
+  }
+

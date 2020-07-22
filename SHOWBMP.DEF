@@ -1,0 +1,14 @@
+;-------------------------------------
+; SHOWBMP.DEF module definition file
+;-------------------------------------
+
+NAME           SHOWBMP    WINDOWAPI
+
+DESCRIPTION    'SHOWBMP Bitmap application test'
+PROTMODE
+HEAPSIZE       1024
+STACKSIZE      8192
+EXPORTS        ClientWndProc
+               AboutDlgProc
+               OpenDlgProc
+
